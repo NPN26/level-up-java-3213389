@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class App {
 
     public static double calculateWaterBill(double gallonsUsage) {
-        // TODO: Implement method
-        return 0;
+        return 18.84 + Math.max(((Math.ceil((gallonsUsage - 1496)/748))*3.9),0);
     }
 
     public static void main(String[] args) {
