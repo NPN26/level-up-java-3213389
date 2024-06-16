@@ -2,26 +2,35 @@ package com.linkedin.javacodechallenges;
 
 import java.util.Collection;
 import java.util.Optional;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.AllArgsConstructor;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
+
 public class StoreItem {
-  String name;
-  double retailPrice;
-  double discount;
+  private String name;
+  private double retailPrice;
+  private double discount;
 
   public static Optional<StoreItem> findLeastExpensive(Collection<StoreItem> items) {
-    // TODO: Implement
-    return Optional.empty();
+    double leastExpensive = 10000;
+    StoreItem leastExpensiveItem = null;
+    for (StoreItem item : items) {
+      double price = item.getRetailPrice()*(1-item.getDiscount());
+      if (price < leastExpensive) {
+        leastExpensive = price;
+        leastExpensiveItem = item;
+      }
+    }
+    return Optional.ofNullable(leastExpensiveItem);
   }
 
   @Override
   public String toString() {
-    return "Name: " + name + ", " + "Retail price: " + retailPrice + ", " + "Discount " + discount;
+    return "Name: " + getName() + ", " + "Retail price: " + getRetailPrice() + ", " + "Discount " + getDiscount();
   }
 }
