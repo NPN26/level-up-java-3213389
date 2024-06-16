@@ -14,7 +14,13 @@ public class App {
             Map.entry('Z', 10));
 
     public static int wordScoreCalculator(String word) {
-        return 0;
+        int points = 0;
+        for(char c : word.toUpperCase().toCharArray()) {
+            if(letterPoints.containsKey(c)) {
+                points += letterPoints.get(c);
+            }
+        }
+        return points;
     }
 
     public static void main(String[] args) {
